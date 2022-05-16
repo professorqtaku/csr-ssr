@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react'
-import styles from '../../styles/CSR.module.css'
+import styles from '../../styles/Styles.module.css'
 
 type Pokemon = {
     id: number;
@@ -30,7 +30,7 @@ const CSRPage = () => {
                 : (
                     pokemons.map((pokemon) => (
                         <div key={pokemon.id} className={styles.card}>
-                        <Link key={pokemon.id} href={`/ssr/${pokemon.id}`}>
+                        <Link key={pokemon.id} href={`/csr/${pokemon.id}`}>
                         <a>
                             <img
                             className={styles.image}

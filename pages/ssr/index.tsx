@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { GetServerSideProps } from 'next'
 import { Pokemon } from '../../types/types'
-import styles from '../../styles/CSR.module.css'
+import styles from '../../styles/Styles.module.css'
 import Link from 'next/link'
 
 interface Props {
@@ -19,7 +19,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
 const SSRPage = ({ pokemons }: Props) => {
   return (
-    <>
+    <div>
       <h1>This page is SSR rendered</h1>
       <div className={styles.container}>
         {pokemons.map((pokemon) => (
@@ -37,7 +37,7 @@ const SSRPage = ({ pokemons }: Props) => {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }
 

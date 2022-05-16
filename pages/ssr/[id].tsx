@@ -9,6 +9,7 @@ interface Props {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   
   const id = context.params.id;
+  
   const res = await fetch(`https://jherr-pokemon.s3.us-west-1.amazonaws.com/pokemon/${id}.json`)
   const data = await res.json();
 
@@ -17,16 +18,20 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 };
 
-const SSRPage = ({ pokemon }: Props) => {
+const SsrPokemonPage = ({ pokemon }: Props) => {
   const { name, image } = pokemon;
-    return (
-        <div>
-          <p>{name}</p>
-          <img src={`https://jherr-pokemon.s3.us-west-1.amazonaws.com/${image}`} alt={image}/>
-        </div>
-    )
-}
+  return (
+    <div>
+      <h1> This pokemon is rendered in SSR </h1>
+      <p>{name}</p>
+      <img
+        src={`https://jherr-pokemon.s3.us-west-1.amazonaws.com/${image}`}
+        alt={image}
+      />
+    </div>
+  );
+};
 
 
  
-export default SSRPage;
+export default SsrPokemonPage;
