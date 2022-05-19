@@ -20,7 +20,7 @@ const CSRPage = () => {
     useEffect(() => {
         fetchData();
     }, []);
-    
+
     return (
         <>
             <h1>This page is CSR rendered</h1>

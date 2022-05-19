@@ -20,6 +20,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 const SsrPokemonPage = ({ pokemon }: Props) => {
   const { name, image } = pokemon;
+  
   return (
     <div>
       <h1> This pokemon is rendered in SSR </h1>
