@@ -10,11 +10,20 @@ type Pokemon = {
 
 const CSRPage = () => {
     const [pokemons, setPokemons] = useState<Pokemon[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const fetchData = async () => {
-        const res = await fetch('https://jherr-pokemon.s3.us-west-1.amazonaws.com/index.json')
-        const data = await res.json();
-        setPokemons(data);
+        try {
+            setIsLoading(true);
+            const res = await fetch('https://jherr-pokemon.s3.us-west-1.amazonaws.com/index.json')
+            const data = await res.json();
+            setPokemons(data);
+            setIsLoading(false);
+            
+        } catch (error) {
+            setPokemons([]);
+            setIsLoading(false);
+        }
     }
 
     useEffect(() => {
@@ -25,8 +34,8 @@ const CSRPage = () => {
         <>
             <h1>This page is CSR rendered</h1>
             <div className={styles.container}>
-                {pokemons.length <= 0 
-                ? <p>Loading...</p>
+                { isLoading ? <p>Loading...</p> : 
+                    pokemons.length <= 0 ? <p>No data</p>
                 : (
                     pokemons.map((pokemon) => (
                         <div key={pokemon.id} className={styles.card}>
